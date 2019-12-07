@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Peohe.Models.Clinics;
 
 namespace Peohe.Models.Balances
 {
     public class Balance
     {
         public int BalanceId { get; set; }
+        public double ToReceive { get; set; }
+        public double Paid { get; set; }
+        public Clinic Clinic { get; set; }
     }
 }
+
