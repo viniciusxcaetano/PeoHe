@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Peohe.Db;
 
 namespace Peohe
 {
@@ -26,6 +28,8 @@ namespace Peohe
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
