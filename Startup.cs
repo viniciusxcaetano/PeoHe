@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Peohe.Db;
+using Peohe.Services;
 
 namespace Peohe
 {
@@ -30,6 +31,9 @@ namespace Peohe
             });
 
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+
+            //Services
+            services.AddSingleton<BalanceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

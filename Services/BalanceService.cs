@@ -23,5 +23,10 @@ namespace Peohe.Services
         {
             throw new NotImplementedException();
         }
+
+        public int testeDenovo()
+        {
+            return 1000;
+        }
     }
 }

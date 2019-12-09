@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models.Clinics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Peohe.Db.Configuration.Clinics
 {
@@ -23,6 +19,7 @@ namespace Peohe.Db.Configuration.Clinics
 
             //Fields
             builder.Property(clinic => clinic.Name).IsRequired();
+            builder.Property(clinic => clinic.Percentage);
         }
     }
 }

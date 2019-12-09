@@ -1,4 +1,5 @@
 ﻿using Peohe.Models.Clinics;
+using Peohe.Models.Doctors;
 
 namespace Peohe.Models.Balances
 {
@@ -8,6 +9,7 @@ namespace Peohe.Models.Balances
         public double ToReceive { get; set; }
         public double Paid { get; set; }
         public Clinic Clinic { get; set; }
+        public Doctor Doctor { get; set; }
     }
 }
 
