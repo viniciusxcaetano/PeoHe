@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Peohe.Models.Users;
+using Peohe.Models;
 
-namespace Peohe.Db.Configuration.Users
+namespace Peohe.Db.Configuration
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

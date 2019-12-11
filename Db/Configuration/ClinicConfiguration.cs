@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Peohe.Models.Clinics;
+using Peohe.Models;
 
-namespace Peohe.Db.Configuration.Clinics
+namespace Peohe.Db.Configuration
 {
     public class ClinicConfiguration : IEntityTypeConfiguration<Clinic>
     {
@@ -20,6 +20,7 @@ namespace Peohe.Db.Configuration.Clinics
             //Fields
             builder.Property(clinic => clinic.Name).IsRequired();
             builder.Property(clinic => clinic.Percentage);
+            builder.Property(clinic => clinic.Deleted);
         }
     }
 }

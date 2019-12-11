@@ -1,9 +1,7 @@
-﻿using Peohe.Models.Attendances;
-using Peohe.Models.Balances;
-using Peohe.Models.Clinics;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Peohe.Models.Doctors
+namespace Peohe.Models
 {
     public class Doctor
     {
@@ -12,8 +10,9 @@ namespace Peohe.Models.Doctors
         public int Cpf { get; set; }
         public int ProfessionalRegistration { get; set; }
         public int PhoneNumber { get; set; }
+        public int BalanceId { get; set; }
         public Balance Balance { get; set; }
-        public ICollection<Clinic> Clinics { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
+        public ICollection<ClinicDoctor> ClinicDoctors { get; set; }
+        public DateTime? Deleted { get; set; }
     }
 }

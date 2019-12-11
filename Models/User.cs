@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Peohe.Models.Users
+namespace Peohe.Models
 {
     public class User
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Peohe.Models.Balances;
+using Peohe.Models;
 
-namespace Peohe.Db.Configuration.Balances
+namespace Peohe.Db.Configuration
 {
     public class BalanceConfiguration : IEntityTypeConfiguration<Balance>
     {

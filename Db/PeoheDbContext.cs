@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Peohe.Db.Configuration.Attendances;
-using Peohe.Db.Configuration.Balances;
-using Peohe.Db.Configuration.Clinics;
-using Peohe.Db.Configuration.Doctors;
-using Peohe.Db.Configuration.Users;
+using Peohe.Db.Configuration;
 
 namespace Peohe.Db
 {

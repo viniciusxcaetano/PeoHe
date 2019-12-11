@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Peohe.Db;
-using Peohe.Models.Balances;
+using Peohe.Models;
 using Peohe.Services;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,6 @@ namespace Peohe.Controllers
         [HttpGet("teste")]
         public ActionResult<int> Teste()
         {
-
             return balanceService.testeDenovo();
         }
     }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Peohe.Models.Doctors;
+using Peohe.Models;
 
-namespace Peohe.Db.Configuration.Doctors
+namespace Peohe.Db.Configuration
 {
     public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
     {
@@ -22,6 +22,7 @@ namespace Peohe.Db.Configuration.Doctors
             builder.Property(doctor => doctor.Cpf);
             builder.Property(doctor => doctor.ProfessionalRegistration);
             builder.Property(doctor => doctor.PhoneNumber);
+            builder.Property(doctor => doctor.Deleted);
         }
     }
 }

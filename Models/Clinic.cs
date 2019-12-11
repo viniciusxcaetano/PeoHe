@@ -1,9 +1,7 @@
-﻿using Peohe.Models.Attendances;
-using Peohe.Models.Balances;
-using Peohe.Models.Doctors;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Peohe.Models.Clinics
+namespace Peohe.Models
 {
     public class Clinic
     {
@@ -11,7 +9,8 @@ namespace Peohe.Models.Clinics
         public string Name { get; set; }
         public ICollection<Balance> Balances { get; set; }
         public double Percentage { get; set; }
-        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<ClinicDoctor> ClinicDoctors { get; set; }
         public ICollection<Attendance> Attendances { get; set; }
+        public DateTime? Deleted { get; set; }
     }
 }
