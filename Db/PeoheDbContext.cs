@@ -13,11 +13,11 @@ namespace Peohe.Db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AttendanceConfiguration());
-            modelBuilder.ApplyConfiguration(new InstallmentConfiguration());
             modelBuilder.ApplyConfiguration(new ClinicConfiguration());
-            modelBuilder.ApplyConfiguration(new DoctorConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new ClinicDoctorConfiguration());
+            modelBuilder.ApplyConfiguration(new DoctorConfiguration());
+            modelBuilder.ApplyConfiguration(new InstallmentConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +30,7 @@ namespace Peohe
             });
 
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            services.AddMvc();
 
             //Services
             services.AddSingleton<InstallmentService>();

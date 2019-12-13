@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 using static Peohe.Models.Enum.Attendance;
 
 namespace Peohe.Models
@@ -18,6 +18,7 @@ namespace Peohe.Models
         public bool? Paid { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? Deleted { get; set; }
+        public IEnumerable<Installment> Installments { get; set; }
         public Clinic Clinic { get; set; }
         public Doctor Doctor { get; set; }
     }

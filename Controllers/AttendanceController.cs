@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Peohe.Db;
 using Peohe.Models;
 using Peohe.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peohe.Controllers
@@ -20,6 +19,12 @@ namespace Peohe.Controllers
         {
             dbContext = context;
             this.attendanceService = attendanceService;
+        }
+        [HttpGet("GetAttendance")]
+        public async Task<ActionResult<Attendance>> GetAttendance(int attendanceId)
+        {
+            return await dbContext.Attendances.Include(a => a.Installments)
+                .FirstOrDefaultAsync(a => a.AttendanceId == attendanceId);
         }
 
         [HttpPost("CreateAttendance")]

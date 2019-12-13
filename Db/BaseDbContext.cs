@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Peohe.Models;
 
 namespace Peohe.Db
 {
@@ -10,6 +7,11 @@ namespace Peohe.Db
     {
         public BaseDbContext(DbContextOptions options) : base(options) { }
 
-
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Clinic> Clinics { get; set; }
+        public DbSet<ClinicDoctor> ClinicDoctors { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Installment> Installments { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace Peohe.Models
         public int ClinicId { get; set; }
         public string Name { get; set; }
         public double Percentage { get; set; }
-        public ICollection<ClinicDoctor> ClinicDoctors { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
+        public IEnumerable<ClinicDoctor> ClinicDoctors { get; set; }
+        public IEnumerable<Attendance> Attendances { get; set; }
         public DateTime? Deleted { get; set; }
     }
 }

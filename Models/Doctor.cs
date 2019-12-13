@@ -10,8 +10,8 @@ namespace Peohe.Models
         public int Cpf { get; set; }
         public int? ProfessionalRegistration { get; set; }
         public int? PhoneNumber { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
-        public ICollection<ClinicDoctor> ClinicDoctors { get; set; }
+        public IEnumerable<Attendance> Attendances { get; set; }
+        public IEnumerable<ClinicDoctor> ClinicDoctors { get; set; }
         public DateTime? Deleted { get; set; }
     }
 }
