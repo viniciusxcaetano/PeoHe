@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Peohe.Services
 {
-    public class BalanceService : IHostedService, IDisposable
+    public class InstallmentService : IHostedService, IDisposable
     {
         public void Dispose()
         {

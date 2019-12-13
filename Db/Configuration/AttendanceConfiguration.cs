@@ -26,11 +26,11 @@ namespace Peohe.Db.Configuration
             builder.Property(attendance => attendance.InstallmentsPaid);
             builder.Property(attendance => attendance.Historic);
             builder.Property(attendance => attendance.CreationDate);
-            builder.Property(attendance => attendance.ReceiptDate);
             builder.Property(attendance => attendance.Deleted);
             builder.Property(attendance => attendance.Historic);
+            builder.Property(attendance => attendance.Paid);
+            builder.Property(attendance => attendance.CardFee);
 
-            //TODO: colocar os IsRequired();
         }
     }
 }

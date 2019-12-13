@@ -23,6 +23,7 @@ namespace Peohe.Services
             using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())
             {
                 var test = dbContext.Add<Attendance>(attendance);
+                dbContext.SaveChanges();
             }
         }
 

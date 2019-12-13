@@ -11,12 +11,12 @@ namespace Peohe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BalanceController : ControllerBase
+    public class InstallmentController : ControllerBase
     {
         private readonly PeoheDbContext dbContext;
-        private readonly BalanceService balanceService;
+        private readonly InstallmentService balanceService;
 
-        public BalanceController(PeoheDbContext context, BalanceService balanceService)
+        public InstallmentController(PeoheDbContext context, InstallmentService balanceService)
         {
             dbContext = context;
             this.balanceService = balanceService;
