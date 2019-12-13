@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models;
+using System;
+using static Peohe.Models.Enum.Attendance;
 
 namespace Peohe.Db.Configuration
 {
@@ -31,6 +33,9 @@ namespace Peohe.Db.Configuration
             builder.Property(attendance => attendance.Paid);
             builder.Property(attendance => attendance.CardFee);
 
+            //Enum
+            builder.Property(attendance => attendance.TypeOfPayment)
+                .HasConversion(tp => tp.ToString(), tp => (TypeOfPayment)Enum.Parse(typeof(TypeOfPayment), tp));
         }
     }
 }

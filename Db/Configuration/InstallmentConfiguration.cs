@@ -18,7 +18,13 @@ namespace Peohe.Db.Configuration
             builder.Property(installment => installment.InstallmentId).IsRequired().UseIdentityColumn();
 
             //Fields
+            builder.Property(installment => installment.Amount);
             builder.Property(installment => installment.Paid);
+            builder.Property(installment => installment.InstallmentNumber);
+            builder.Property(installment => installment.DueDate);
+            builder.Property(installment => installment.PayDay);
+            builder.Property(installment => installment.Deleted);
+            builder.Property(installment => installment.Historic);
         }
     }
 }

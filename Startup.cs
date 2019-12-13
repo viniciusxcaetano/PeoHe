@@ -33,7 +33,7 @@ namespace Peohe
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
             //Services
-            services.AddSingleton<BalanceService>();
+            services.AddSingleton<InstallmentService>();
             services.AddSingleton<AttendanceService>();
         }
 

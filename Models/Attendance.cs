@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Peohe.Models.Enum.Attendance;
 
 namespace Peohe.Models
 {
     public class Attendance
     {
         public int AttendanceId { get; set; }
-        public int TypeOfPayment { get; set; } //TODO: criar enum
+        public TypeOfPayment TypeOfPayment { get; set; }
         public double Amount { get; set; }
         public double? AmountPaid { get; set; }
         public double Percentage { get; set; }
