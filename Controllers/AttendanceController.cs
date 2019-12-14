@@ -4,7 +4,8 @@ using Peohe.Db;
 using Peohe.Models;
 using Peohe.Services;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peohe.Controllers
 {
@@ -14,17 +15,22 @@ namespace Peohe.Controllers
     {
         private readonly PeoheDbContext dbContext;
         private readonly AttendanceService attendanceService;
-
         public AttendanceController(PeoheDbContext context, AttendanceService attendanceService)
         {
             dbContext = context;
             this.attendanceService = attendanceService;
         }
+
         [HttpGet("GetAttendance")]
-        public async Task<ActionResult<Attendance>> GetAttendance(int attendanceId)
+        public ActionResult<Attendance> GetAttendance(int attendanceId)
         {
-            return await dbContext.Attendances.Include(a => a.Installments)
-                .FirstOrDefaultAsync(a => a.AttendanceId == attendanceId);
+            return dbContext.Attendances.Include(a => a.Installments)
+                .FirstOrDefault(a => a.AttendanceId == attendanceId);
+        }
+        [HttpGet("GetAttendancesByMonth")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesByMonth(int? month)
+        {
+            return dbContext.Attendances.Where(a => a.CreationDate.Month == (month.HasValue ? month : DateTime.Now.Month)).ToList();
         }
 
         [HttpPost("CreateAttendance")]

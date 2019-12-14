@@ -9,7 +9,7 @@ namespace Peohe.Db.Configuration
         public void Configure(EntityTypeBuilder<Installment> builder)
         {
             //Table
-            builder.ToTable("Balance");
+            builder.ToTable("Installment");
 
             //Key
             builder.HasKey(installment => installment.InstallmentId);

@@ -12,7 +12,7 @@ export class FetchDataComponent implements OnInit {
   constructor(private webService: RepositoryService) { }
 
   ngOnInit() {
-    this.webService.getData("Balance/teste").subscribe(result => {
+    this.webService.getData("Installment/teste").subscribe(result => {
     }, error => console.error(error));
   }
 

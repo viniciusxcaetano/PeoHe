@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Peohe.Db;
 using Peohe.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static Peohe.Models.Enum.Attendance;
@@ -22,6 +24,8 @@ namespace Peohe.Services
         {
             using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())
             {
+                attendance.CreationDate = DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+
                 if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
                 {
                     List<Installment> installments = new List<Installment>();
@@ -41,9 +45,10 @@ namespace Peohe.Services
                         };
                         installments.Add(installment);
                     }
+                    attendance.Installments = installments;
                 }
-                //var test = dbContext.Add<Attendance>(attendance);
-                //dbContext.SaveChanges();
+                dbContext.Attendances.Add(attendance);
+                dbContext.SaveChanges();
             }
         }
 
