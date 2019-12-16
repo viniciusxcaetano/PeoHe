@@ -17,6 +17,7 @@ namespace Peohe.Models
         public string Historic { get; set; }
         public bool? Paid { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime? PayDay { get; set; }
         public DateTime? Deleted { get; set; }
         public IEnumerable<Installment> Installments { get; set; }
         public Clinic Clinic { get; set; }
