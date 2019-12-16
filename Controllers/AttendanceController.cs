@@ -22,7 +22,7 @@ namespace Peohe.Controllers
         }
 
         [HttpGet("GetAttendance")]
-        public ActionResult<Attendance> GetAttendance(int attendanceId)
+        public ActionResult<Attendance> GetAttendance(Guid attendanceId)
         {
             return dbContext.Attendances.Include(a => a.Installments)
                 .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);

@@ -5,7 +5,7 @@ namespace Peohe.Models
 {
     public class Clinic
     {
-        public int ClinicId { get; set; }
+        public Guid ClinicId { get; set; }
         public string Name { get; set; }
         public double Percentage { get; set; }
         public IEnumerable<ClinicDoctor> ClinicDoctors { get; set; }

@@ -6,7 +6,7 @@ namespace Peohe.Models
 {
     public class Attendance
     {
-        public int AttendanceId { get; set; }
+        public Guid AttendanceId { get; set; }
         public TypeOfPayment TypeOfPayment { get; set; }
         public double Amount { get; set; }
         public double? AmountPaid { get; set; }

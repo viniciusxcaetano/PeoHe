@@ -5,7 +5,7 @@ namespace Peohe.Models
 {
     public class Doctor
     {
-        public int DoctorId { get; set; }
+        public Guid DoctorId { get; set; }
         public string Name { get; set; }
         public int Cpf { get; set; }
         public int? ProfessionalRegistration { get; set; }
