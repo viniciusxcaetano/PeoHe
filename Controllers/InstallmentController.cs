@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Peohe.Db;
 using Peohe.Models;
 using Peohe.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Peohe.Controllers
 {
@@ -14,17 +14,35 @@ namespace Peohe.Controllers
     public class InstallmentController : ControllerBase
     {
         private readonly PeoheDbContext dbContext;
-        private readonly InstallmentService balanceService;
+        private readonly InstallmentService installmentService;
 
         public InstallmentController(PeoheDbContext context, InstallmentService balanceService)
         {
             dbContext = context;
-            this.balanceService = balanceService;
+            this.installmentService = balanceService;
         }
-        [HttpGet("teste")]
-        public ActionResult<int> Teste()
+
+        [HttpGet("GetInstallment")]
+        public ActionResult<Installment> GetInstallment(int installmentId)
         {
-            return balanceService.testeDenovo();
+            return dbContext.Installments.Include(i => i.Attendance)
+                .FirstOrDefault(i => i.InstallmentId == installmentId && i.Deleted == null);
+        }
+
+        [HttpGet("GetInstallmentsByAttendance")]
+        public ActionResult<IEnumerable<Installment>> GetInstallments(int attendanceId)
+        {
+            return dbContext.Installments.Include(i => i.Attendance)
+                .Where(i => i.Attendance.AttendanceId == attendanceId && i.Deleted == null).ToList();
+        }
+
+        [HttpGet("GetInstallmentsExpired")]
+        public ActionResult<IEnumerable<Installment>> GetInstallmentsExpired()
+        {
+            return dbContext.Installments
+                .Where(i => i.DueDate > DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")))
+                .Where(i => i.Paid == null && i.Deleted == null)
+                .ToList();
         }
     }
 }

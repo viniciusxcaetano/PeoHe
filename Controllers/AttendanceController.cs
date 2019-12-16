@@ -25,12 +25,26 @@ namespace Peohe.Controllers
         public ActionResult<Attendance> GetAttendance(int attendanceId)
         {
             return dbContext.Attendances.Include(a => a.Installments)
-                .FirstOrDefault(a => a.AttendanceId == attendanceId);
+                .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
         }
+        [HttpGet("GetAttendancesPaid")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesPaid()
+        {
+            return dbContext.Attendances.Where(a => a.Paid == true && a.Deleted == null).ToList();
+        }
+
+        [HttpGet("GetAttendancesUnpaid")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesUnpaid()
+        {
+            return dbContext.Attendances.Where(a => a.Paid == null && a.Deleted == null).ToList();
+        }
+
         [HttpGet("GetAttendancesByMonth")]
         public ActionResult<IEnumerable<Attendance>> GetAttendancesByMonth(int? month)
         {
-            return dbContext.Attendances.Where(a => a.CreationDate.Month == (month.HasValue ? month : DateTime.Now.Month)).ToList();
+            return dbContext.Attendances
+                .Where(a => a.CreationDate.Month == (month.HasValue ? month : DateTime.Now.Month)
+                && a.Deleted == null).ToList();
         }
 
         [HttpPost("CreateAttendance")]
