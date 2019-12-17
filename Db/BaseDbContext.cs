@@ -1,11 +1,17 @@
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Peohe.Models;
 
 namespace Peohe.Db
 {
-    public class BaseDbContext : DbContext
+    public class BaseDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public BaseDbContext(DbContextOptions options) : base(options) { }
+        public BaseDbContext(DbContextOptions options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
+        {
+        }
 
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Clinic> Clinics { get; set; }

@@ -16,10 +16,10 @@ namespace Peohe.Controllers
         private readonly PeoheDbContext dbContext;
         private readonly InstallmentService installmentService;
 
-        public InstallmentController(PeoheDbContext context, InstallmentService balanceService)
+        public InstallmentController(PeoheDbContext context, InstallmentService installmentService)
         {
             dbContext = context;
-            this.installmentService = balanceService;
+            this.installmentService = installmentService;
         }
 
         [HttpGet("GetInstallment")]
