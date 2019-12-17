@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models;
+using System;
 
 namespace Peohe.Db.Configuration
 {
@@ -15,8 +16,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(clinic => clinic.ClinicId);
 
             //Identity
-            builder.Property(clinic => clinic.ClinicId).IsRequired().UseIdentityColumn();
-
+            builder.Property(clinic => clinic.ClinicId).IsRequired().HasDefaultValue(Guid.NewGuid());
             //Fields
             builder.Property(clinic => clinic.Name).IsRequired();
             builder.Property(clinic => clinic.Percentage);

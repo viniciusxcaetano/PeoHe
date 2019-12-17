@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models;
+using System;
 
 namespace Peohe.Db.Configuration
 {
@@ -15,7 +16,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(installment => installment.InstallmentId);
 
             //Identity
-            builder.Property(installment => installment.InstallmentId).IsRequired().UseIdentityColumn();
+            builder.Property(installment => installment.InstallmentId).IsRequired().HasDefaultValue(Guid.NewGuid());
 
             //Fields
             builder.Property(installment => installment.Amount);

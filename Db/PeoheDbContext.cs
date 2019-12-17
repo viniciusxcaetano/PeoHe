@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Peohe.Db.Configuration;
 
 namespace Peohe.Db
@@ -17,7 +17,6 @@ namespace Peohe.Db
             modelBuilder.ApplyConfiguration(new ClinicDoctorConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorConfiguration());
             modelBuilder.ApplyConfiguration(new InstallmentConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

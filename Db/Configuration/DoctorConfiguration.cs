@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models;
+using System;
 
 namespace Peohe.Db.Configuration
 {
@@ -15,7 +16,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(doctor => doctor.DoctorId);
 
             //Identity
-            builder.Property(doctor => doctor.DoctorId).IsRequired().UseIdentityColumn();
+            builder.Property(doctor => doctor.DoctorId).IsRequired().HasDefaultValue(Guid.NewGuid());
 
             //Fields
             builder.Property(doctor => doctor.Name);
