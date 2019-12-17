@@ -11,5 +11,6 @@ namespace Peohe.Models
         public IEnumerable<ClinicDoctor> ClinicDoctors { get; set; }
         public IEnumerable<Attendance> Attendances { get; set; }
         public DateTime? Deleted { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

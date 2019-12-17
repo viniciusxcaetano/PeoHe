@@ -22,5 +22,6 @@ namespace Peohe.Models
         public IEnumerable<Installment> Installments { get; set; }
         public Clinic Clinic { get; set; }
         public Doctor Doctor { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
