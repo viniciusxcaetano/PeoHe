@@ -12,7 +12,8 @@ export class FetchDataComponent implements OnInit {
   constructor(private webService: RepositoryService) { }
 
   ngOnInit() {
-    this.webService.getData("Installment/teste").subscribe(result => {
+    this.webService.getData("WeatherForecast/GetTeste").subscribe(result => {
+      this.forecasts = result as WeatherForecast[];
     }, error => console.error(error));
   }
 
