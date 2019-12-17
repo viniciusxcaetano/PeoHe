@@ -24,7 +24,7 @@ namespace Peohe.Services
         {
             using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())
             {
-                attendance.CreationDate = DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+                attendance.CreationDate = DateTime.Now;
 
                 if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
                 {

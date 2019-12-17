@@ -16,7 +16,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(doctor => doctor.DoctorId);
 
             //Identity
-            builder.Property(doctor => doctor.DoctorId).IsRequired().HasDefaultValue(Guid.NewGuid());
+            builder.Property(doctor => doctor.DoctorId).HasDefaultValue(Guid.NewGuid());
 
             //Fields
             builder.Property(doctor => doctor.Name);

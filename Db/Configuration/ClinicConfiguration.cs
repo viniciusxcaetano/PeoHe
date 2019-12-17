@@ -16,7 +16,8 @@ namespace Peohe.Db.Configuration
             builder.HasKey(clinic => clinic.ClinicId);
 
             //Identity
-            builder.Property(clinic => clinic.ClinicId).IsRequired().HasDefaultValue(Guid.NewGuid());
+            builder.Property(clinic => clinic.ClinicId).HasDefaultValue(Guid.NewGuid());
+
             //Fields
             builder.Property(clinic => clinic.Name).IsRequired();
             builder.Property(clinic => clinic.Percentage);

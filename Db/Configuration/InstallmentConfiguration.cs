@@ -16,7 +16,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(installment => installment.InstallmentId);
 
             //Identity
-            builder.Property(installment => installment.InstallmentId).IsRequired().HasDefaultValue(Guid.NewGuid());
+            builder.Property(installment => installment.InstallmentId).HasDefaultValue(Guid.NewGuid());
 
             //Fields
             builder.Property(installment => installment.Amount);

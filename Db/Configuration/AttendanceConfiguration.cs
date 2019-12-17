@@ -17,7 +17,7 @@ namespace Peohe.Db.Configuration
             builder.HasKey(attendance => attendance.AttendanceId);
 
             //Identity
-            builder.Property(attendance => attendance.AttendanceId).IsRequired().HasDefaultValue(Guid.NewGuid());
+            builder.Property(attendance => attendance.AttendanceId).HasDefaultValue(Guid.NewGuid());
 
             //Fields
             builder.Property(attendance => attendance.TypeOfPayment);
