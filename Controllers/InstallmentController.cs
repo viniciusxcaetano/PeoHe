@@ -40,7 +40,7 @@ namespace Peohe.Controllers
         public ActionResult<IEnumerable<Installment>> GetInstallmentsExpired()
         {
             return dbContext.Installments
-                .Where(i => i.DueDate > DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")))
+                .Where(i => i.DueDate > DateTime.Now)
                 .Where(i => i.Paid == null && i.Deleted == null)
                 .ToList();
         }

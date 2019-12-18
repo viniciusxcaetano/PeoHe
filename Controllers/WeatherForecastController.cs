@@ -28,8 +28,7 @@ namespace Peohe.Controllers
         [HttpGet("GetTeste")]
         public IEnumerable<WeatherForecast> Get()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // will give the user's userId
-            Guid test = Guid.Parse(userId);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

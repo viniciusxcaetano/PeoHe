@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Peohe.Db;
 using Peohe.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static Peohe.Models.Enum.Attendance;
@@ -20,6 +18,7 @@ namespace Peohe.Services
         {
             _scopeFactory = scopeFactory;
         }
+
         public void CreateAttendance(Attendance attendance)
         {
             using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())

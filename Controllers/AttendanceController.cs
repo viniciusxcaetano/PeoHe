@@ -6,6 +6,7 @@ using Peohe.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Peohe.Controllers
 {
@@ -50,6 +51,8 @@ namespace Peohe.Controllers
         [HttpPost("CreateAttendance")]
         public ActionResult<int> CreateAttendance(Attendance attendance)
         {
+            attendance.User.Id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             try
             {
                 attendanceService.CreateAttendance(attendance);

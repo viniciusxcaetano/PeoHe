@@ -12,11 +12,11 @@ namespace Peohe.Db
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicDoctor> ClinicDoctors { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Installment> Installments { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
