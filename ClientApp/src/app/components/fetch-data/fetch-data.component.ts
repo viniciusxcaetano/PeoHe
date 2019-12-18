@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RepositoryService } from '../shared/services/repository.service';
+import { RepositoryService } from '../../shared/services/repository.service';
 
 @Component({
   selector: 'app-fetch-data',
