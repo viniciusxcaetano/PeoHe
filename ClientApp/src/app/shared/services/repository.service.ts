@@ -10,8 +10,12 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(route: string) {
+  public get(route: string) {
     return this.http.get(this.createCompleteRoute(route));
+  }
+
+  public getWithParams(route: string, params) {
+    return this.http.get(this.createCompleteRoute(route), params);
   }
 
   public create(route: string, body) {
@@ -36,7 +40,7 @@ export class RepositoryService {
 
   private genereteHeaders() {
     return {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
   }
 }

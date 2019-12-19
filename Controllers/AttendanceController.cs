@@ -51,7 +51,7 @@ namespace Peohe.Controllers
         [HttpPost("CreateAttendance")]
         public ActionResult<int> CreateAttendance(Attendance attendance)
         {
-            attendance.User.Id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            attendance.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             try
             {
