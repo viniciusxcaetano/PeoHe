@@ -18,5 +18,6 @@ namespace Peohe.Db
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Installment> Installments { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 }

@@ -6,9 +6,7 @@ namespace Peohe.Models
 {
     public class Attendance
     {
-        public Attendance()
-        {
-        }
+        public Attendance() { }
         public Guid AttendanceId { get; set; }
         public TypeOfPayment TypeOfPayment { get; set; }
         public double Amount { get; set; }
@@ -25,6 +23,6 @@ namespace Peohe.Models
         public IEnumerable<Installment> Installments { get; set; }
         public Clinic Clinic { get; set; }
         public Doctor Doctor { get; set; }
-        public string UserId { get; set; }
+        public string AplicationUserId { get; set; }
     }
 }

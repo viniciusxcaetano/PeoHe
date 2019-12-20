@@ -22,6 +22,7 @@ namespace Peohe.Db
             modelBuilder.ApplyConfiguration(new ClinicDoctorConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorConfiguration());
             modelBuilder.ApplyConfiguration(new InstallmentConfiguration());
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
         }
     }
 }

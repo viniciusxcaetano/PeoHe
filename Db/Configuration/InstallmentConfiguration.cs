@@ -26,6 +26,7 @@ namespace Peohe.Db.Configuration
             builder.Property(installment => installment.PayDay);
             builder.Property(installment => installment.Deleted);
             builder.Property(installment => installment.Historic);
+            builder.Property(installment => installment.AplicationUserId);
         }
     }
 }

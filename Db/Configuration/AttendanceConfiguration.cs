@@ -33,7 +33,7 @@ namespace Peohe.Db.Configuration
             builder.Property(attendance => attendance.Historic);
             builder.Property(attendance => attendance.Paid);
             builder.Property(attendance => attendance.CardFee);
-            builder.Property(attendance => attendance.UserId);
+            builder.Property(attendance => attendance.AplicationUserId);
 
             //Enum
             builder.Property(attendance => attendance.TypeOfPayment)

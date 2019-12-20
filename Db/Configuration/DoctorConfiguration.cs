@@ -24,6 +24,7 @@ namespace Peohe.Db.Configuration
             builder.Property(doctor => doctor.ProfessionalRegistration);
             builder.Property(doctor => doctor.PhoneNumber);
             builder.Property(doctor => doctor.Deleted);
+            builder.Property(doctor => doctor.AplicationUserId);
         }
     }
 }
