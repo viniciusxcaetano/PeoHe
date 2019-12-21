@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { RepositoryService } from './shared/services/repository.service';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './ui/header/nav-menu/nav-menu.component';
+import { HeaderComponent } from './ui/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
@@ -17,7 +17,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+    HeaderComponent,
     HomeComponent,
     CounterComponent,
     FetchDataComponent
