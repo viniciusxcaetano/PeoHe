@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Peohe.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +8,12 @@ using System.Threading.Tasks;
 
 namespace Peohe.Services
 {
-    public class InstallmentService : IHostedService, IDisposable
+    public class InstallmentService
     {
-        public void Dispose()
+        private readonly PeoheDbContext dbContext;
+        public InstallmentService(PeoheDbContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            dbContext = context;
         }
 
         public int testeDenovo()
