@@ -34,11 +34,11 @@ export class AttendanceEditComponent implements OnInit {
         })
       )
       .subscribe(attendance => {
-          this.attendance = attendance;
-          this.feedback = {};
-        },
+        this.attendance = attendance;
+        this.feedback = {};
+      },
         err => {
-          this.feedback = {type: 'warning', message: 'Error loading'};
+          this.feedback = { type: 'warning', message: 'Error loading' };
         }
       );
   }
@@ -47,13 +47,13 @@ export class AttendanceEditComponent implements OnInit {
     this.attendanceService.save(this.attendance).subscribe(
       attendance => {
         this.attendance = attendance;
-        this.feedback = {type: 'success', message: 'Save was successful!'};
+        this.feedback = { type: 'success', message: 'Save was successful!' };
         setTimeout(() => {
           this.router.navigate(['/attendances']);
         }, 1000);
       },
       err => {
-        this.feedback = {type: 'warning', message: 'Error saving'};
+        this.feedback = { type: 'warning', message: 'Error saving' };
       }
     );
   }

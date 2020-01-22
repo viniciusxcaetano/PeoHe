@@ -10,13 +10,7 @@ namespace Peohe.Services
 {
     public class InstallmentService
     {
-        private readonly PeoheDbContext dbContext;
-        public InstallmentService(PeoheDbContext context)
-        {
-            dbContext = context;
-        }
-
-        public int testeDenovo()
+        public int testeDenovo(PeoheDbContext dbContext)
         {
             return 1000;
         }

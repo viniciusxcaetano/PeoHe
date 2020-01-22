@@ -40,27 +40,27 @@ export class AttendanceService {
     return this.http.get<Attendance[]>(url, { params, headers });
   }
 
-  save(entity: Attendance): Observable<Attendance> {
+  save(attendance: Attendance): Observable<Attendance> {
     let params = new HttpParams();
     let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (entity.id) {
-      url = `http://www.angular.at/api/flight/${entity.id.toString()}`;
-      params = new HttpParams().set('ID', entity.id.toString());
-      return this.http.put<Attendance>(url, entity, { headers, params });
+    if (attendance.id) {
+      url = `https://localhost:44348/api/attendance/${attendance.id.toString()}`;
+      params = new HttpParams().set('ID', attendance.id.toString());
+      return this.http.put<Attendance>(url, attendance, { headers, params });
     } else {
-      url = `http://www.angular.at/api/flight`;
-      return this.http.post<Attendance>(url, entity, { headers, params });
+      url = `https://localhost:44348/api/Attendance/CreateAttendance`;
+      return this.http.post<Attendance>(url, attendance, { headers, params });
     }
   }
 
-  delete(entity: Attendance): Observable<Attendance> {
+  delete(attendance: Attendance): Observable<Attendance> {
     let params = new HttpParams();
     let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (entity.id) {
-      url = `http://www.angular.at/api/flight/${entity.id.toString()}`;
-      params = new HttpParams().set('ID', entity.id.toString());
+    if (attendance.id) {
+      url = `http://www.angular.at/api/flight/${attendance.id.toString()}`;
+      params = new HttpParams().set('ID', attendance.id.toString());
       return this.http.delete<Attendance>(url, { headers, params });
     }
     return null;

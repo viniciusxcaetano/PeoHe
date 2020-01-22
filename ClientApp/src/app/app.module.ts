@@ -16,7 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     BrowserModule,
     HttpClientModule,
     AttendanceModule,
-    RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
+    RouterModule.forRoot([...APP_ROUTES], { ...APP_EXTRA_OPTIONS }),
   ],
   declarations: [
     AppComponent,

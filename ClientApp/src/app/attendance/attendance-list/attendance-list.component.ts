@@ -35,13 +35,13 @@ export class AttendanceListComponent implements OnInit {
   delete(attendance: Attendance): void {
     if (confirm('Are you sure?')) {
       this.attendanceService.delete(attendance).subscribe(() => {
-          this.feedback = {type: 'success', message: 'Delete was successful!'};
-          setTimeout(() => {
-            this.search();
-          }, 1000);
-        },
+        this.feedback = { type: 'success', message: 'Delete was successful!' };
+        setTimeout(() => {
+          this.search();
+        }, 1000);
+      },
         err => {
-          this.feedback = {type: 'warning', message: 'Error deleting.'};
+          this.feedback = { type: 'warning', message: 'Error deleting.' };
         }
       );
     }

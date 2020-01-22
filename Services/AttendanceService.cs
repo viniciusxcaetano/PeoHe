@@ -4,6 +4,7 @@ using Peohe.Db;
 using Peohe.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static Peohe.Models.Enum.Attendance;
@@ -12,13 +13,7 @@ namespace Peohe.Services
 {
     public class AttendanceService
     {
-        private readonly PeoheDbContext dbContext;
-        public AttendanceService(PeoheDbContext context)
-        {
-            dbContext = context;
-        }
-
-        public void CreateAttendance(Attendance attendance)
+        public void CreateAttendance(PeoheDbContext dbContext, Attendance attendance)
         {
             attendance.CreationDate = DateTime.Now;
 
