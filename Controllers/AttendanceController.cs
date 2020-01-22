@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using static Peohe.Models.Enum.Attendance;
 
 namespace Peohe.Controllers
 {
@@ -49,19 +50,37 @@ namespace Peohe.Controllers
         }
 
         [HttpPost("CreateAttendance")]
-        public ActionResult<int> CreateAttendance(Attendance attendance)
+        public ActionResult<Attendance> CreateAttendance(Attendance attendance)
         {
             attendance.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            try
+            attendance.CreationDate = DateTime.Now;
+
+            if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
             {
-                attendanceService.CreateAttendance(attendance);
-                return Ok();
+                List<Installment> installments = new List<Installment>();
+                double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
+                DateTime dueDate = DateTime.Now;
+
+                for (int i = 0; i < attendance.InstallmentsAmount; i++)
+                {
+                    dueDate = dueDate.AddMonths(1);
+
+                    Installment installment = new Installment()
+                    {
+                        InstallmentNumber = i + 1,
+                        Amount = amount,
+                        DueDate = dueDate,
+                        Attendance = new Attendance { AttendanceId = attendance.AttendanceId }
+                    };
+                    installments.Add(installment);
+                }
+                attendance.Installments = installments;
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            dbContext.Attendances.Add(attendance);
+            dbContext.SaveChanges();
+
+            return attendance;
         }
     }
 }

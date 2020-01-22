@@ -1,8 +1,4 @@
-import { TypeOfPayment } from "./enum/Attendance";
-import { Installment } from "./Installment";
-import { ApplicationUser } from "./ApplicationUser";
-import { Clinic } from "./Clinic";
-import { Doctor } from "./Doctor";
+import { TypeOfPayment } from "../core/enum";
 
 export class Attendance {
     attendanceId: string;
@@ -18,8 +14,4 @@ export class Attendance {
     creationDate: Date;
     payday: Date;
     deleted: Date;
-    installments: Array<Installment>;
-    clinic: Clinic;
-    doctor: Doctor;
-    applicationUser: ApplicationUser;
 }
