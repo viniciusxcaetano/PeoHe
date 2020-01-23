@@ -56,6 +56,12 @@ namespace Peohe
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                app.UseCors(builder => builder
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+               );
             }
             else
             {
@@ -92,10 +98,10 @@ namespace Peohe
                 spa.Options.SourcePath = "ClientApp";
 
                 //Para subir o angular
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                //if (env.IsDevelopment())
+                //{
+                //    spa.UseAngularCliServer(npmScript: "start");
+                //}
             });
         }
     }

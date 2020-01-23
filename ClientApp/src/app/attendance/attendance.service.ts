@@ -1,12 +1,14 @@
 import { Attendance } from './attendance';
 import { AttendanceFilter } from './attendance-filter';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class AttendanceService {
-  attendanceList: Attendance[] = [];
+
+  attendanceList: Attendance[];
 
   constructor(private http: HttpClient) {
   }
@@ -29,7 +31,7 @@ export class AttendanceService {
   }
 
   find(filter: AttendanceFilter): Observable<Attendance[]> {
-    const url = `http://www.angular.at/api/flight`;
+    const url = `https://localhost:44348/api/attendance/getAttendances`;
     const headers = new HttpHeaders().set('Accept', 'application/json');
 
     const params = {
@@ -44,12 +46,12 @@ export class AttendanceService {
     let params = new HttpParams();
     let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (attendance.id) {
-      url = `https://localhost:44348/api/attendance/${attendance.id.toString()}`;
-      params = new HttpParams().set('ID', attendance.id.toString());
+    if (attendance.attendanceId) {
+      url = `https://localhost:44348/api/attendance/${attendance.attendanceId.toString()}`;
+      params = new HttpParams().set('ID', attendance.attendanceId.toString());
       return this.http.put<Attendance>(url, attendance, { headers, params });
     } else {
-      url = `https://localhost:44348/api/Attendance/CreateAttendance`;
+      url = `https://localhost:44348/api/attendance/createAttendance`;
       return this.http.post<Attendance>(url, attendance, { headers, params });
     }
   }
@@ -58,11 +60,15 @@ export class AttendanceService {
     let params = new HttpParams();
     let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (attendance.id) {
-      url = `http://www.angular.at/api/flight/${attendance.id.toString()}`;
-      params = new HttpParams().set('ID', attendance.id.toString());
+    if (attendance.attendanceId) {
+      url = `https://localhost:44348/api/Attendance/${attendance.attendanceId.toString()}`;
+      params = new HttpParams().set('ID', attendance.attendanceId.toString());
       return this.http.delete<Attendance>(url, { headers, params });
     }
     return null;
+  }
+  private handleError(res: HttpErrorResponse | any) {
+    console.error(res.error || res.body.error);
+    return observableThrowError(res.error || 'Server error');
   }
 }

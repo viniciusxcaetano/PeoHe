@@ -1,10 +1,10 @@
 <ol class="breadcrumb float-right">
     <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item active">Attendance</li>
+    <li class="breadcrumb-item active">Atendimentos</li>
 </ol>
 <div class="card">
     <div class="header">
-        <h2 class="title">Attendance List</h2>
+        <h2 class="title">Lista de Atendimentos</h2>
     </div>
     <div class="content">
         <form #f="ngForm">
@@ -19,8 +19,8 @@
                 <input [(ngModel)]="filter.to" id="to" name="to" class="form-control">
             </div>
 
-            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Search</button>
-            <a [routerLink]="['../attendances', 'new' ]" class="btn btn-default">New</a>
+            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Procurar</button>
+            <a [routerLink]="['../attendances', 'new' ]" class="btn btn-default">Novo</a>
         </form>
     </div>
 </div>
@@ -30,23 +30,29 @@
         <table class="table table-centered table-hover mb-0" id="datatable">
             <thead>
                 <tr>
-                    <th class="border-top-0" scope="col">Id</th>
-                    <th class="border-top-0" scope="col">From</th>
-                    <th class="border-top-0" scope="col">To</th>
-                    <th class="border-top-0" scope="col">Date</th>
+                    <th class="border-top-0" scope="col">Pago</th>
+                    <!-- <th class="border-top-0" scope="col">Tipo de Pagamento</th> -->
+                    <th class="border-top-0" scope="col">Valor</th>
+                    <th class="border-top-0" scope="col">Valor Pago</th>
+                    <th class="border-top-0" scope="col">Porcentagem</th>
+                    <th class="border-top-0" scope="col">Quantidade de Parcelas</th>
+                    <th class="border-top-0" scope="col">Parcelas Pagas</th>
                     <th class="border-top-0" scope="col" style="width:120px"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of attendanceList" [class.active]="item === selectedAttendance">
 
-                    <td>{{item.id}}</td>
-                    <td>{{item.from}}</td>
-                    <td>{{item.to}}</td>
-                    <td>{{item.date | date}}</td>
+                    <td>{{item.paid}}</td>
+                    <!-- <td>{{item.typeOfPayment}}</td> -->
+                    <td>{{item.amount}}</td>
+                    <td>{{item.amountPaid}}</td>
+                    <td>{{item.percentage}}</td>
+                    <td>{{item.installmentsAmount}}</td>
+                    <td>{{item.installmentsPaid}}</td>
                     <td style="white-space: nowrap">
-                        <a [routerLink]="['../attendances', item.id ]" class="btn btn-secondary">Edit</a>&nbsp;
-                        <button (click)="delete(item)" class="btn btn-danger">Delete</button>
+                        <a [routerLink]="['../attendances', item.attendanceId ]" class="btn btn-secondary">Editar</a>&nbsp;
+                        <button (click)="delete(item)" class="btn btn-danger">Apagar</button>
                     </td>
                 </tr>
             </tbody>

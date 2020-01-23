@@ -1,22 +1,26 @@
-import { TypeOfPayment } from "../enum";
+import { TypeOfPayment } from "../models/enum/Attendance";
+import { Clinic } from "../models/Clinic";
+import { Doctor } from "../models/Doctor";
+import { Installment } from "../models/Installment";
 
 export class Attendance {
-  id: number;
-  from: string;
-  to: string;
-  date: Date;
-
   attendanceId: string;
   typeOfPayment: TypeOfPayment;
   amount: number;
-  amountPaid: number;
+  amountPaid?: number;
   percentage: number;
-  cardFee: number;
-  installmentsAmount: number;
-  installmentsPaid: number;
+  cardFee?: number;
+  installmentsAmount?: number;
+  installmentsPaid?: number;
   historic: string;
-  paid: boolean;
-  creationDate: Date;
-  payday: Date;
-  deleted: Date;
+  paid?: boolean;
+  creationDate: string;
+  payDay?: string;
+  deleted?: string;
+  installments?: Installment[];
+  clinic?: Clinic;
+  doctor?: Doctor;
+  aplicationUserId: string;
 }
+
+//mudar depois clinic,doctor nao pode ser vazio, installments nao sei

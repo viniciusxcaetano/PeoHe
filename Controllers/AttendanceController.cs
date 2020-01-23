@@ -29,6 +29,13 @@ namespace Peohe.Controllers
             return dbContext.Attendances.Include(a => a.Installments)
                 .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
         }
+
+        [HttpGet("GetAttendances")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendances()
+       {
+            return dbContext.Attendances.Where(a => a.Deleted == null).ToList();
+        }
+
         [HttpGet("GetAttendancesPaid")]
         public ActionResult<IEnumerable<Attendance>> GetAttendancesPaid()
         {
@@ -52,7 +59,7 @@ namespace Peohe.Controllers
         [HttpPost("CreateAttendance")]
         public ActionResult<Attendance> CreateAttendance(Attendance attendance)
         {
-            attendance.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //attendance.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             attendance.CreationDate = DateTime.Now;
 
@@ -81,6 +88,17 @@ namespace Peohe.Controllers
             dbContext.SaveChanges();
 
             return attendance;
+        }
+        [HttpGet("DeleteAll")]
+        public void DeleteAll()
+        {
+            var attendantes = dbContext.Attendances.Where(a => a.Deleted == null).ToList();
+
+            foreach (var attendance in attendantes)
+            {
+                attendance.Deleted = DateTime.Now;
+            }
+            dbContext.SaveChanges();
         }
     }
 }
