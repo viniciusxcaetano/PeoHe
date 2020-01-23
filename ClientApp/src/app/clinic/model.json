@@ -1,0 +1,55 @@
+{
+    "title": "Clinic",
+    "entity": "clinic",
+    "api": {
+        "url": "https://localhost:44348/api/clinic/"
+    },
+    "filter": [
+        "clinicId",
+        "name",
+        "percentage",
+        "clinicDoctors",
+        "attendances",
+        "deleted",
+        "aplicationUserId"
+    ],
+    "fields": [{
+            "name": "clinicId",
+            "isId": true,
+            "type": "string",
+            "label": "ClinicId",
+            "control": "text"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "label": "Name"
+        },
+        {
+            "name": "percentage",
+            "type": "number",
+            "label": "Percentage"
+        },
+        {
+            "name": "clinicDoctors",
+            "type": "ClinicDoctor[]",
+            "label": "ClinicDoctors"
+        },
+        {
+            "name": "attendances",
+            "type": "Attendance[]",
+            "label": "Attendances"
+        },
+        {
+            "name": "deleted",
+            "type": "date",
+            "control": "date",
+            "label": "Deleted"
+        },
+        {
+            "name": "aplicationUserId",
+            "type": "string",
+            "label": "AplicationUserId"
+        }
+    ]
+}

@@ -11,8 +11,8 @@
         <form *ngIf="attendance" #editForm="ngForm" (ngSubmit)="save()">
 
             <div class="form-group">
-                <label for="id">Id</label>
-                <input type="number" [(ngModel)]="attendance.id" id="id" name="id" class="form-control">
+                <label for="amount">Valor</label>
+                <input type="number" [(ngModel)]="attendance.amount" id="amount" name="amount" class="form-control">
             </div>
 
             <div class="form-group">

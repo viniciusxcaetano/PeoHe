@@ -1,0 +1,39 @@
+{
+  "name": "angular-crud",
+  "version": "1.0.0",
+  "description": "Generating CRUD applications with Angular, the CLI, and Schematics",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "coverage": "istanbul cover -x 'src/**/*_spec.js' jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics",
+    "Angular",
+    "CRUD",
+    "generate"
+  ],
+  "author": "Manfred Steyer",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "devDependencies": {
+    "@angular-devkit/core": "^8.3.19",
+    "@angular-devkit/schematics": "^8.3.19",
+    "@schematics/angular": "8.3.19",
+    "@types/jasmine": "^3.5.0",
+    "@types/json5": "0.0.30",
+    "@types/node": "^12.12.11",
+    "chalk": "^3.0.0",
+    "istanbul": "0.4.5",
+    "jasmine": "^3.5.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "json5": "^2.1.1",
+    "schematics-utilities": "2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manfredsteyer/angular-crud"
+  }
+}
