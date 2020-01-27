@@ -13,7 +13,8 @@
         "deleted",
         "aplicationUserId"
     ],
-    "fields": [{
+    "fields": [
+        {
             "name": "clinicId",
             "isId": true,
             "type": "string",

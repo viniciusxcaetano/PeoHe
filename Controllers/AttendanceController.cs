@@ -26,13 +26,16 @@ namespace Peohe.Controllers
         [HttpGet("GetAttendance")]
         public ActionResult<Attendance> GetAttendance(Guid attendanceId)
         {
-            return dbContext.Attendances.Include(a => a.Installments)
+            return dbContext.Attendances
                 .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
+
+            //return dbContext.Attendances.Include(a => a.Installments)
+            //    .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
         }
 
         [HttpGet("GetAttendances")]
         public ActionResult<IEnumerable<Attendance>> GetAttendances()
-       {
+        {
             return dbContext.Attendances.Where(a => a.Deleted == null).ToList();
         }
 

@@ -33,25 +33,26 @@
                     <th class="border-top-0" scope="col">Pago</th>
                     <!-- <th class="border-top-0" scope="col">Tipo de Pagamento</th> -->
                     <th class="border-top-0" scope="col">Valor</th>
-                    <th class="border-top-0" scope="col">Valor Pago</th>
                     <th class="border-top-0" scope="col">Porcentagem</th>
+                    <th class="border-top-0" scope="col">Valor Pago</th>
                     <th class="border-top-0" scope="col">Quantidade de Parcelas</th>
                     <th class="border-top-0" scope="col">Parcelas Pagas</th>
                     <th class="border-top-0" scope="col" style="width:120px"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of attendanceList" [class.active]="item === selectedAttendance">
-
+                <tr *ngFor="let item of attendanceList" [class.active]="item === selectedAttendance"
+                    [routerLink]="['../attendances', item.attendanceId ]" style="cursor: pointer;">
                     <td>{{item.paid}}</td>
                     <!-- <td>{{item.typeOfPayment}}</td> -->
-                    <td>{{item.amount}}</td>
+                    <td>R$ {{item.amount}}</td>
                     <td>{{item.amountPaid}}</td>
                     <td>{{item.percentage}}</td>
                     <td>{{item.installmentsAmount}}</td>
                     <td>{{item.installmentsPaid}}</td>
                     <td style="white-space: nowrap">
-                        <a [routerLink]="['../attendances', item.attendanceId ]" class="btn btn-secondary">Editar</a>&nbsp;
+                        <a [routerLink]="['../attendances', item.attendanceId ]"
+                            class="btn btn-secondary">Editar</a>&nbsp;
                         <button (click)="delete(item)" class="btn btn-danger">Apagar</button>
                     </td>
                 </tr>

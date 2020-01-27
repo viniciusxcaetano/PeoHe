@@ -4,30 +4,57 @@
 </ol>
 <div class="card">
     <div class="header">
-        <h2 class="title">Attendance Detail</h2>
+        <h2 class="title">Atendimento</h2>
     </div>
     <div class="content">
         <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
         <form *ngIf="attendance" #editForm="ngForm" (ngSubmit)="save()">
 
             <div class="form-group">
+                <label for="selectedClinic">Selecione a clínica</label>
+                <select class="form-control" id="selectedClinic" (change)="selectedClinic($event.target.value)">
+                    <option [value]="clinic.clinicId" *ngFor="let clinic of clinics">
+                        {{clinic.name}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="amount">Valor</label>
-                <input type="number" [(ngModel)]="attendance.amount" id="amount" name="amount" class="form-control">
+                <input [(ngModel)]="attendance.amount" id="amount" name="amount" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="from">From</label>
-                <input [(ngModel)]="attendance.from" id="from" name="from" class="form-control">
+                <label for="creationDate">Data do atendimento</label>
+                <input type="date" [(ngModel)]="attendance.creationDate" id="creationDate" name="creationDate"
+                    class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="to">To</label>
-                <input [(ngModel)]="attendance.to" id="to" name="to" class="form-control">
+                <label for="amountPaid">Valor pago</label>
+                <input [(ngModel)]="attendance.amountPaid" id="amountPaid" name="amountPaid" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="date">Date</label>
-                <input type="date" [(ngModel)]="attendance.date" id="date" name="date" class="form-control">
+                <label for="cardFee">Taxa do cartão</label>
+                <input [(ngModel)]="attendance.cardFee" id="cardFee" name="cardFee" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="installmentsAmount">Quantidade de parcelas</label>
+                <input [(ngModel)]="attendance.installmentsAmount" id="installmentsAmount" name="installmentsAmount"
+                    class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="installmentsPaid">Quantidade de parcelas pagas</label>
+                <input [(ngModel)]="attendance.installmentsPaid" id="installmentsPaid" name="installmentsPaid"
+                    class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="historic">Histórico</label>
+                <input [(ngModel)]="attendance.historic" id="historic" name="historic" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Save</button>

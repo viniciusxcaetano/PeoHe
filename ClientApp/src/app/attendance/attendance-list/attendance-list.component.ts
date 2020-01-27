@@ -33,15 +33,15 @@ export class AttendanceListComponent implements OnInit {
   }
 
   delete(attendance: Attendance): void {
-    if (confirm('Are you sure?')) {
+    if (confirm('Você tem certeza?')) {
       this.attendanceService.delete(attendance).subscribe(() => {
-        this.feedback = { type: 'success', message: 'Delete was successful!' };
+        this.feedback = { type: 'success', message: 'Excluído com sucesso!' };
         setTimeout(() => {
           this.search();
         }, 1000);
       },
         err => {
-          this.feedback = { type: 'warning', message: 'Error deleting.' };
+          this.feedback = { type: 'warning', message: 'Erro ao excluir' };
         }
       );
     }
