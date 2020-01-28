@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../attendance.service';
@@ -7,10 +7,16 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ClinicService } from 'src/app/clinic/clinic.service';
 import { Clinic } from 'src/app/clinic/clinic';
+import {MatSelectModule} from '@angular/material/select'
 
 @Component({
   selector: 'app-attendance-edit',
   templateUrl: './attendance-edit.component.html'
+})
+@NgModule({
+  imports: [
+    MatSelectModule
+  ]
 })
 export class AttendanceEditComponent implements OnInit {
 

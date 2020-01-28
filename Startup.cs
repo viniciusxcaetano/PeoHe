@@ -26,9 +26,11 @@ namespace Peohe
         {
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
+
             services.AddMvc().AddNewtonsoftJson(options => 
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            //Identity
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                .AddEntityFrameworkStores<PeoheDbContext>();
             services.AddIdentityServer()
@@ -37,6 +39,7 @@ namespace Peohe
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
 
             //Services
             services.AddSingleton<InstallmentService>();

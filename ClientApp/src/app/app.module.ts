@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ClinicModule } from './clinic/clinic.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { ClinicModule } from './clinic/clinic.module';
     AttendanceModule,
     RouterModule.forRoot([...APP_ROUTES], { ...APP_EXTRA_OPTIONS }),
     ClinicModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
   ],
   declarations: [
     AppComponent,
