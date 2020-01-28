@@ -18,6 +18,7 @@ export class Attendance {
   payDay?: string;
   deleted?: string;
   installments?: Installment[];
+  clinicId: string;
   clinic: Clinic;
   doctor?: Doctor;
   aplicationUserId: string;

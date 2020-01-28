@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Peohe.Db;
 using Peohe.Models;
@@ -92,6 +92,14 @@ namespace Peohe.Controllers
 
             return attendance;
         }
+        [HttpDelete("DeleteAttendance")]
+        public void DeleteAttendance(Guid attendanceId)
+        {
+            var attendance = dbContext.Attendances.Where(a => a.AttendanceId == attendanceId).FirstOrDefault();
+            attendance.Deleted = DateTime.Now;
+            dbContext.SaveChanges();
+        }
+
         [HttpGet("DeleteAll")]
         public void DeleteAll()
         {

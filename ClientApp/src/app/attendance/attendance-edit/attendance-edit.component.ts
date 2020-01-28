@@ -51,7 +51,7 @@ export class AttendanceEditComponent implements OnInit {
       );
   }
   selectedClinic(clinicId: string) {
-    this.attendance.historic = clinicId;
+    this.attendance.clinicId = clinicId;
   }
   save() {
     this.attendanceService.save(this.attendance).subscribe(
