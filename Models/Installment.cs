@@ -12,6 +12,7 @@ namespace Peohe.Models
         public DateTime? PayDay { get; set; }
         public DateTime? Deleted { get; set; }
         public string Historic { get; set; }
+        public Guid AttendanceId { get; set; }
         public Attendance Attendance { get; set; }
         public string AplicationUserId { get; set; }
     }

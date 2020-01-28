@@ -21,6 +21,7 @@ namespace Peohe.Models
         public DateTime? PayDay { get; set; }
         public DateTime? Deleted { get; set; }
         public IEnumerable<Installment> Installments { get; set; }
+        public Guid ClinicId { get; set; }
         public Clinic Clinic { get; set; }
         public Doctor Doctor { get; set; }
         public string AplicationUserId { get; set; }

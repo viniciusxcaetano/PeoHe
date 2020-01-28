@@ -25,7 +25,9 @@ namespace Peohe
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
-            services.AddMvc();
+
+            services.AddMvc().AddNewtonsoftJson(options => 
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                .AddEntityFrameworkStores<PeoheDbContext>();

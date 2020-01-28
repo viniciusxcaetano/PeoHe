@@ -26,8 +26,12 @@ namespace Peohe.Controllers
         [HttpGet("GetAttendance")]
         public ActionResult<Attendance> GetAttendance(Guid attendanceId)
         {
-            return dbContext.Attendances
-                .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
+            var attendance = dbContext.Attendances
+                .Where(a => a.AttendanceId == attendanceId && a.Deleted == null).FirstOrDefault();
+
+            var installments = dbContext.Installments.Where(i => i.AttendanceId == attendanceId).ToList();
+
+            return attendance;
 
             //return dbContext.Attendances.Include(a => a.Installments)
             //    .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
@@ -81,13 +85,15 @@ namespace Peohe.Controllers
                         InstallmentNumber = i + 1,
                         Amount = amount,
                         DueDate = dueDate,
-                        Attendance = new Attendance { AttendanceId = attendance.AttendanceId }
+                        AttendanceId = attendance.AttendanceId
                     };
                     installments.Add(installment);
                 }
                 attendance.Installments = installments;
+
+                dbContext.Attendances.Add(attendance);
             }
-            dbContext.Attendances.Add(attendance);
+            var test = attendance;
             dbContext.SaveChanges();
 
             return attendance;
