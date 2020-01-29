@@ -37,7 +37,7 @@ namespace Peohe
               .AddApiAuthorization<ApplicationUser, PeoheDbContext>();
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddControllers();
             services.AddRazorPages();
 
 

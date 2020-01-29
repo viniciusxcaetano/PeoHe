@@ -7,7 +7,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ClinicService } from 'src/app/clinic/clinic.service';
 import { Clinic } from 'src/app/clinic/clinic';
-import {MatSelectModule} from '@angular/material/select'
 
 @Component({
   selector: 'app-attendance-edit',
@@ -15,7 +14,6 @@ import {MatSelectModule} from '@angular/material/select'
 })
 @NgModule({
   imports: [
-    MatSelectModule
   ]
 })
 export class AttendanceEditComponent implements OnInit {
@@ -57,8 +55,10 @@ export class AttendanceEditComponent implements OnInit {
       );
   }
   selectedClinic(clinicId: string) {
-    this.attendance.clinicId = clinicId;
+    alert("teste" + clinicId);
+    //this.attendance.clinicId = clinicId;
   }
+
   save() {
     this.attendanceService.save(this.attendance).subscribe(
       attendance => {
@@ -77,4 +77,5 @@ export class AttendanceEditComponent implements OnInit {
   cancel() {
     this.router.navigate(['/attendances']);
   }
+
 }
