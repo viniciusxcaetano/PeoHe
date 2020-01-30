@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ClinicService } from 'src/app/clinic/clinic.service';
 import { Clinic } from 'src/app/clinic/clinic';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-attendance-edit',
@@ -16,7 +17,9 @@ export class AttendanceEditComponent implements OnInit {
 
   id: string;
   attendance: Attendance;
-  clinics: Clinic[];
+  clinics2: Clinic[];
+  clinics: SelectItem[];
+  selectedClinic: Clinic;
   feedback: any = {};
 
   constructor(
@@ -35,7 +38,7 @@ export class AttendanceEditComponent implements OnInit {
         switchMap(id => {
           if (id === 'new') {
             this.clinicService.getClinics().subscribe(clinics =>
-              this.clinics = clinics);
+              this.clinics2 = clinics);
             return of(new Attendance());
           }
           return this.attendanceService.findById(id);
@@ -50,22 +53,24 @@ export class AttendanceEditComponent implements OnInit {
         }
       );
   }
-  selectedClinic(clinicId: string) {
-    this.attendance.clinicId = clinicId;
+  chosenClinic() {
+    console.log(this.selectedClinic);
   }
   save() {
-    this.attendanceService.save(this.attendance).subscribe(
-      attendance => {
-        this.attendance = attendance;
-        this.feedback = { type: 'success', message: 'Salvo com sucesso!' };
-        setTimeout(() => {
-          this.router.navigate(['/attendances']);
-        }, 1000);
-      },
-      err => {
-        this.feedback = { type: 'warning', message: 'Erro ao salvar' };
-      }
-    );
+    console.log("save");
+    // this.attendance.clinicId = this.selectedClinic.clinicId;
+    // this.attendanceService.save(this.attendance).subscribe(
+    //   attendance => {
+    //     this.attendance = attendance;
+    //     this.feedback = { type: 'success', message: 'Salvo com sucesso!' };
+    //     setTimeout(() => {
+    //       this.router.navigate(['/attendances']);
+    //     }, 1000);
+    //   },
+    //   err => {
+    //     this.feedback = { type: 'warning', message: 'Erro ao salvar' };
+    //   }
+    // );
   }
 
   cancel() {

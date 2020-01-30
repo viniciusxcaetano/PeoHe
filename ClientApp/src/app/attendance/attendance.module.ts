@@ -6,11 +6,19 @@ import { AttendanceListComponent } from './attendance-list/attendance-list.compo
 import { AttendanceEditComponent } from './attendance-edit/attendance-edit.component';
 import { AttendanceService } from './attendance.service';
 import { Attendance_ROUTES } from './attendance.routes';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+
+    BrowserModule,
+    BrowserAnimationsModule,
+    DropdownModule,
+
     RouterModule.forChild(Attendance_ROUTES)
   ],
   declarations: [

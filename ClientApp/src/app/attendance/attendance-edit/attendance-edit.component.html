@@ -10,14 +10,18 @@
         <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
         <form *ngIf="attendance" #editForm="ngForm" (ngSubmit)="save()">
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="selectedClinic">Selecione a clínica</label>
                 <select class="form-control" id="selectedClinic" (change)="selectedClinic($event.target.value)">
                     <option [value]="clinic.clinicId" *ngFor="let clinic of clinics">
                         {{clinic.name}}
                     </option>
                 </select>
-            </div>
+            </div> -->
+
+            <p-dropdown [required]="true" [options]="clinics2" [(ngModel)]="selectedClinic"
+                placeholder="Selecione a clinica" (click)="chosenClinic()" optionLabel="name" [showClear]="true">
+            </p-dropdown>
 
             <div class="form-group">
                 <label for="amount">Valor</label>
@@ -26,7 +30,8 @@
 
             <div class="form-group">
                 <label for="creationDate">Data do atendimento</label>
-                <input type="date" [(ngModel)]="attendance.creationDate" id="creationDate" name="creationDate" class="form-control">
+                <input type="date" [(ngModel)]="attendance.creationDate" id="creationDate" name="creationDate"
+                    class="form-control">
             </div>
 
             <div class="form-group">
@@ -41,16 +46,19 @@
 
             <div class="form-group">
                 <label for="installmentsAmount">Quantidade de parcelas</label>
-                <input type="number" [(ngModel)]="attendance.installmentsAmount" id="installmentsAmount" name="installmentsAmount" class="form-control">
+                <input type="number" [(ngModel)]="attendance.installmentsAmount" id="installmentsAmount"
+                    name="installmentsAmount" class="form-control">
             </div>
             <div class="form-group">
                 <label for="installmentsAmount">Tipo de pagamento</label>
-                <input type="number" [(ngModel)]="attendance.TypeOfPayment" id="TypeOfPayment" name="TypeOfPayment" class="form-control">
+                <input type="number" [(ngModel)]="attendance.TypeOfPayment" id="TypeOfPayment" name="TypeOfPayment"
+                    class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="installmentsPaid">Quantidade de parcelas pagas</label>
-                <input [(ngModel)]="attendance.installmentsPaid" id="installmentsPaid" name="installmentsPaid" class="form-control">
+                <input [(ngModel)]="attendance.installmentsPaid" id="installmentsPaid" name="installmentsPaid"
+                    class="form-control">
             </div>
 
             <div class="form-group">
