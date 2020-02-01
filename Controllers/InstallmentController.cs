@@ -25,15 +25,15 @@ namespace Peohe.Controllers
         [HttpGet("GetInstallment")]
         public ActionResult<Installment> GetInstallment(Guid installmentId)
         {
-            return dbContext.Installments.Include(i => i.Attendance)
+            return dbContext.Installments
                 .FirstOrDefault(i => i.InstallmentId == installmentId && i.Deleted == null);
         }
 
-        [HttpGet("GetInstallmentsByAttendance")]
-        public ActionResult<IEnumerable<Installment>> GetInstallments(Guid attendanceId)
+        [HttpGet("GetInstallmentsByAttendanceId")]
+        public ActionResult<IEnumerable<Installment>> GetInstallmentsByAttendanceId(Guid attendanceId)
         {
-            return dbContext.Installments.Include(i => i.Attendance)
-                .Where(i => i.Attendance.AttendanceId == attendanceId && i.Deleted == null).ToList();
+            return dbContext.Installments
+                .Where(i => i.AttendanceId == attendanceId && i.Deleted == null).ToList();
         }
 
         [HttpGet("GetInstallmentsExpired")]

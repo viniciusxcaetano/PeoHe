@@ -27,6 +27,11 @@
                 <label for="amount">Valor</label>
                 <input type="number" [(ngModel)]="attendance.amount" id="amount" name="amount" class="form-control">
             </div>
+            <div class="form-group ">
+                <label for="amount ">Valor</label>
+                <input type="number " [(ngModel)]="attendance.amount " id="amount " name="amount "
+                    class="form-control ">
+            </div>
 
             <div class="form-group">
                 <label for="creationDate">Data do atendimento</label>
@@ -34,14 +39,14 @@
                     class="form-control">
             </div>
 
-            <div class="form-group">
-                <label for="amountPaid">Valor pago</label>
-                <input [(ngModel)]="attendance.amountPaid" id="amountPaid" name="amountPaid" class="form-control">
+            <div class="form-group ">
+                <label for="amountPaid ">Valor pago</label>
+                <input [(ngModel)]="attendance.amountPaid " id="amountPaid " name="amountPaid " class="form-control ">
             </div>
 
-            <div class="form-group">
-                <label for="cardFee">Taxa do cartão</label>
-                <input [(ngModel)]="attendance.cardFee" id="cardFee" name="cardFee" class="form-control">
+            <div class="form-group ">
+                <label for="cardFee ">Taxa do cartão</label>
+                <input [(ngModel)]="attendance.cardFee " id="cardFee " name="cardFee " class="form-control ">
             </div>
 
             <div class="form-group">
@@ -54,6 +59,12 @@
                 <input type="number" [(ngModel)]="attendance.TypeOfPayment" id="TypeOfPayment" name="TypeOfPayment"
                     class="form-control">
             </div>
+            <mat-form-field>
+                <mat-select placeholder="Selecione o tipo de pagamento">
+                    <mat-option value=0>Débito</mat-option>
+                    <mat-option value=1>Crédito</mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <div class="form-group">
                 <label for="installmentsPaid">Quantidade de parcelas pagas</label>
@@ -61,13 +72,13 @@
                     class="form-control">
             </div>
 
-            <div class="form-group">
-                <label for="historic">Histórico</label>
-                <input [(ngModel)]="attendance.historic" id="historic" name="historic" class="form-control">
+            <div class="form-group ">
+                <label for="historic ">Histórico</label>
+                <input [(ngModel)]="attendance.historic " id="historic " name="historic " class="form-control ">
             </div>
 
-            <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Save</button>
-            <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            <button type="submit " class="btn btn-primary " [disabled]="!editForm.form.valid ">Save</button>
+            <button type="button " class="btn btn-secondary " (click)="cancel() ">Cancel</button>
         </form>
     </div>
 </div>

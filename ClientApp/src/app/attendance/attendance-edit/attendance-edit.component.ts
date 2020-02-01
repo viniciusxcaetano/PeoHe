@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AttendanceService } from '../attendance.service';
@@ -12,6 +12,10 @@ import { SelectItem } from 'primeng/api';
 @Component({
   selector: 'app-attendance-edit',
   templateUrl: './attendance-edit.component.html'
+})
+@NgModule({
+  imports: [
+  ]
 })
 export class AttendanceEditComponent implements OnInit {
 
@@ -56,6 +60,7 @@ export class AttendanceEditComponent implements OnInit {
   chosenClinic() {
     console.log(this.selectedClinic);
   }
+
   save() {
     console.log("save");
     // this.attendance.clinicId = this.selectedClinic.clinicId;
@@ -76,4 +81,5 @@ export class AttendanceEditComponent implements OnInit {
   cancel() {
     this.router.navigate(['/attendances']);
   }
+
 }

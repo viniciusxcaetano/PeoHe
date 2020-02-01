@@ -29,12 +29,7 @@ namespace Peohe.Controllers
             var attendance = dbContext.Attendances
                 .Where(a => a.AttendanceId == attendanceId && a.Deleted == null).FirstOrDefault();
 
-            var installments = dbContext.Installments.Where(i => i.AttendanceId == attendanceId).ToList();
-
             return attendance;
-
-            //return dbContext.Attendances.Include(a => a.Installments)
-            //    .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
         }
 
         [HttpGet("GetAttendances")]
@@ -93,9 +88,8 @@ namespace Peohe.Controllers
 
                 dbContext.Attendances.Add(attendance);
             }
-            var test = attendance;
-            dbContext.SaveChanges();
 
+            dbContext.SaveChanges();
             return attendance;
         }
         [HttpDelete("DeleteAttendance")]
