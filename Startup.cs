@@ -27,26 +27,23 @@ namespace Peohe
             services.AddDbContext<PeoheDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
             services.AddMvc();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-               .AddEntityFrameworkStores<PeoheDbContext>();
-            services.AddIdentityServer()
-              .AddApiAuthorization<ApplicationUser, PeoheDbContext>();
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<PeoheDbContext>();
+            services.AddIdentityServer().AddApiAuthorization<ApplicationUser, PeoheDbContext>();
+            services.AddAuthentication().AddIdentityServerJwt();
             services.AddRazorPages();
+            services.AddControllers().AddNewtonsoftJson();
+
 
             //Services
             services.AddSingleton<InstallmentService>();
             services.AddSingleton<AttendanceService>();
-
-            services.AddControllersWithViews();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +53,14 @@ namespace Peohe
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                //Para aceitar qualquer origem
+                app.UseCors(builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                );
+                //
             }
             else
             {

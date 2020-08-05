@@ -21,6 +21,9 @@ namespace Peohe.Db.Configuration
             //Fields
             builder.Property(clinic => clinic.Name).IsRequired();
             builder.Property(clinic => clinic.Percentage);
+            builder.Property(clinic => clinic.Address);
+            builder.Property(clinic => clinic.Comments);
+            builder.Property(clinic => clinic.Phone);
             builder.Property(clinic => clinic.Deleted);
             builder.Property(clinic => clinic.AplicationUserId);
         }

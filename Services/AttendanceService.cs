@@ -12,39 +12,43 @@ namespace Peohe.Services
 {
     public class AttendanceService
     {
-        private readonly PeoheDbContext dbContext;
-        public AttendanceService(PeoheDbContext context)
+        //private readonly PeoheDbContext dbContext;
+        private readonly IServiceScopeFactory _scopeFactory;
+        public AttendanceService(IServiceScopeFactory scopeFactory)
         {
-            dbContext = context;
+            _scopeFactory = scopeFactory;
         }
 
         public void CreateAttendance(Attendance attendance)
         {
-            attendance.CreationDate = DateTime.Now;
-
-            if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
+            using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())
             {
-                List<Installment> installments = new List<Installment>();
-                double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
-                DateTime dueDate = DateTime.Now;
+                attendance.CreationDate = DateTime.Now;
 
-                for (int i = 0; i < attendance.InstallmentsAmount; i++)
+                if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
                 {
-                    dueDate = dueDate.AddMonths(1);
+                    List<Installment> installments = new List<Installment>();
+                    double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
+                    DateTime dueDate = DateTime.Now;
 
-                    Installment installment = new Installment()
+                    for (int i = 0; i < attendance.InstallmentsAmount; i++)
                     {
-                        InstallmentNumber = i + 1,
-                        Amount = amount,
-                        DueDate = dueDate,
-                        Attendance = new Attendance { AttendanceId = attendance.AttendanceId }
-                    };
-                    installments.Add(installment);
+                        dueDate = dueDate.AddMonths(1);
+
+                        Installment installment = new Installment()
+                        {
+                            InstallmentNumber = i + 1,
+                            Amount = amount,
+                            DueDate = dueDate,
+                            Attendance = new Attendance { AttendanceId = attendance.AttendanceId }
+                        };
+                        installments.Add(installment);
+                    }
+                    attendance.Installments = installments;
                 }
-                attendance.Installments = installments;
+                dbContext.Attendances.Add(attendance);
+                dbContext.SaveChanges();
             }
-            dbContext.Attendances.Add(attendance);
-            dbContext.SaveChanges();
         }
     }
 }
