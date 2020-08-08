@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Peohe.Db;
 using Peohe.Models;
+using Peohe.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,32 +15,71 @@ namespace Peohe.Controllers
     public class ClinicController : ControllerBase
     {
         private readonly PeoheDbContext dbContext;
-
-        public ClinicController(PeoheDbContext context)
+        private readonly ClinicService clinicService;
+        public ClinicController(PeoheDbContext context, ClinicService clinicService)
         {
             dbContext = context;
+            this.clinicService = clinicService;
         }
 
         [HttpGet("GetClinic")]
-        public ActionResult<Clinic> GetClinic(Guid clinicId)
+        public ActionResult<Clinic> GetClinic(Guid id)
         {
-            return dbContext.Clinics.FirstOrDefault(c => c.ClinicId == clinicId && c.Deleted == null);
+            return dbContext.Clinics.FirstOrDefault(c => c.ClinicId == id && c.Deleted == null);
+        }
+
+        [HttpGet("GetClinics")]
+        public ActionResult<IEnumerable<Clinic>> GetClinics()
+        {
+            List<Clinic> clinics = dbContext.Clinics.Where(c => c.Deleted == null).ToList();
+
+            return clinics;
         }
 
         [HttpPost("CreateClinic")]
-        public ActionResult<int> CreateClinic(Clinic clinic)
+        public void CreateClinic(Clinic clinic)
         {
             //clinic.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            try
+
+            dbContext.Clinics.Add(clinic);
+            dbContext.SaveChanges();
+        }
+        [HttpPost("UpdateClinic")]
+        public void UpdateClinic(Clinic clinic)
+        {
+            Clinic existClinic = dbContext.Clinics
+                .Where(c => c.ClinicId == clinic.ClinicId).FirstOrDefault();
+
+            if (existClinic != null)
             {
-                dbContext.Clinics.Add(clinic);
+                dbContext.Clinics.Update(clinic);
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        [HttpGet("DeleteClinic")]
+        public void DeleteClinic(Guid id)
+        {
+            var clinic = dbContext.Clinics.FirstOrDefault(c => c.ClinicId == id);
+            if (clinic != null)
+            {
+                clinic.Deleted = DateTime.Now;
+                dbContext.Clinics.Update(clinic);
                 dbContext.SaveChanges();
-                return Ok();
             }
-            catch (Exception ex)
+        }
+
+        [HttpPost("DeleteClinics")]
+        public void DeleteClinics(List<Guid> ids)
+        {
+            List<Clinic> clinics = dbContext.Clinics.Where(c => ids.Contains(c.ClinicId)).ToList();
+
+            foreach (var clinic in clinics)
             {
-                return BadRequest(ex);
+                clinic.Deleted = DateTime.Now;
             }
+            dbContext.SaveChanges();
         }
     }
 }

@@ -37,6 +37,7 @@ namespace Peohe
             //Services
             services.AddSingleton<InstallmentService>();
             services.AddSingleton<AttendanceService>();
+            services.AddSingleton<ClinicService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
