@@ -2,11 +2,18 @@
 {
     public class Attendance
     {
+        public enum Status
+        {
+            Aberto,
+            Pago,
+            Vencido,
+
+        }
         public enum TypeOfPayment
         {
-            Debit, 
-            CreditCard, 
-            Agreement
+            Debito,
+            Credito,
+            Convenio
         }
     }
 }

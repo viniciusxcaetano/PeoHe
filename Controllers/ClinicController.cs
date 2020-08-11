@@ -47,10 +47,10 @@ namespace Peohe.Controllers
         [HttpPost("UpdateClinic")]
         public void UpdateClinic(Clinic clinic)
         {
-            Clinic existClinic = dbContext.Clinics
-                .Where(c => c.ClinicId == clinic.ClinicId).FirstOrDefault();
+            Clinic oldClinic = dbContext.Clinics
+                .Where(c => c.ClinicId == clinic.ClinicId).AsNoTracking().FirstOrDefault();
 
-            if (existClinic != null)
+            if (oldClinic != null)
             {
                 dbContext.Clinics.Update(clinic);
             }

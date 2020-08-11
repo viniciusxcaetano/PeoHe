@@ -32,7 +32,7 @@ namespace Peohe.Services
                     dbContext.SaveChanges();
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
             }

@@ -19,7 +19,7 @@ namespace Peohe.Db.Configuration
             builder.Property(clinic => clinic.ClinicId).HasDefaultValue(Guid.NewGuid());
 
             //Fields
-            builder.Property(clinic => clinic.Name).IsRequired();
+            builder.Property(clinic => clinic.Name);
             builder.Property(clinic => clinic.Percentage);
             builder.Property(clinic => clinic.Address);
             builder.Property(clinic => clinic.Comments);

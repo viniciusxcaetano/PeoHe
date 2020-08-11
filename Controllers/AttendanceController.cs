@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using static Peohe.Models.Enum.Attendance;
 
 namespace Peohe.Controllers
 {
@@ -28,30 +29,18 @@ namespace Peohe.Controllers
             return dbContext.Attendances.Include(a => a.Installments)
                 .FirstOrDefault(a => a.AttendanceId == attendanceId && a.Deleted == null);
         }
-        [HttpGet("GetAttendancesPaid")]
-        public ActionResult<IEnumerable<Attendance>> GetAttendancesPaid()
-        {
-            return dbContext.Attendances.Where(a => a.Paid == true && a.Deleted == null).ToList();
-        }
 
-        [HttpGet("GetAttendancesUnpaid")]
-        public ActionResult<IEnumerable<Attendance>> GetAttendancesUnpaid()
+        [HttpGet("GetAttendances")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendances()
         {
-            return dbContext.Attendances.Where(a => a.Paid == null && a.Deleted == null).ToList();
-        }
-
-        [HttpGet("GetAttendancesByMonth")]
-        public ActionResult<IEnumerable<Attendance>> GetAttendancesByMonth(int? month)
-        {
-            return dbContext.Attendances
-                .Where(a => a.CreationDate.Month == (month.HasValue ? month : DateTime.Now.Month)
-                && a.Deleted == null).ToList();
+            List<Attendance> attendances = dbContext.Attendances.Where(a => a.Deleted == null).ToList();
+            return attendances;
         }
 
         [HttpPost("CreateAttendance")]
         public ActionResult<int> CreateAttendance(Attendance attendance)
         {
-            attendance.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //attendance.AplicationUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             try
             {
@@ -62,6 +51,50 @@ namespace Peohe.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+
+        [HttpGet("DeleteAttendance")]
+        public void DeleteAttendance(Guid id)
+        {
+            var attendance = dbContext.Attendances.FirstOrDefault(a => a.AttendanceId == id);
+
+            if (attendance != null)
+            {
+                attendance.Deleted = DateTime.Now;
+                dbContext.Attendances.Update(attendance);
+                dbContext.SaveChanges();
+            }
+        }
+
+        [HttpGet("DeleteAttendances")]
+        public void DeleteAttendances(List<Guid> ids)
+        {
+            List<Attendance> attendances = dbContext.Attendances.Where(a => ids.Contains(a.AttendanceId)).ToList();
+            foreach (var attendance in attendances)
+            {
+                attendance.Deleted = DateTime.Now;
+            }
+            dbContext.SaveChanges();
+        }
+
+        [HttpGet("GetAttendancesPaid")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesPaid()
+        {
+            return dbContext.Attendances.Where(a => a.Status == Status.Pago && a.Deleted == null).ToList();
+        }
+
+        [HttpGet("GetAttendancesUnpaid")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesUnpaid()
+        {
+            return dbContext.Attendances.Where(a => a.Status == Status.Vencido && a.Deleted == null).ToList();
+        }
+
+        [HttpGet("GetAttendancesByMonth")]
+        public ActionResult<IEnumerable<Attendance>> GetAttendancesByMonth(int? month)
+        {
+            return dbContext.Attendances
+                .Where(a => a.CreatedDate.Month == (month.HasValue ? month : DateTime.Now.Month)
+                && a.Deleted == null).ToList();
         }
     }
 }

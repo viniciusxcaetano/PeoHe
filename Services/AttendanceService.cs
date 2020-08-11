@@ -23,12 +23,12 @@ namespace Peohe.Services
         {
             using (var dbContext = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<PeoheDbContext>())
             {
-                attendance.CreationDate = DateTime.Now;
+                attendance.CreatedDate = DateTime.Now;
 
-                if (attendance.TypeOfPayment == TypeOfPayment.CreditCard)
+                if (attendance.TypeOfPayment == TypeOfPayment.Credito)
                 {
                     List<Installment> installments = new List<Installment>();
-                    double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
+                     //double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
                     DateTime dueDate = DateTime.Now;
 
                     for (int i = 0; i < attendance.InstallmentsAmount; i++)
@@ -38,7 +38,7 @@ namespace Peohe.Services
                         Installment installment = new Installment()
                         {
                             InstallmentNumber = i + 1,
-                            Amount = amount,
+                            //Amount = amount,
                             DueDate = dueDate,
                             Attendance = new Attendance { AttendanceId = attendance.AttendanceId }
                         };
