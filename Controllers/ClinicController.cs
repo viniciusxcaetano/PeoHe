@@ -36,6 +36,20 @@ namespace Peohe.Controllers
             return clinics;
         }
 
+        [HttpGet("GetClinicNameList")]
+        public ActionResult<IEnumerable<Clinic>> GetClinicNameList()
+        {
+           var test =  dbContext.Clinics.Where(c => c.Deleted == null)
+                .Select(c =>
+                new Clinic
+                {
+                    ClinicId = c.ClinicId,
+                    Name = c.Name
+                }).ToList();
+
+            return test;
+        }
+
         [HttpPost("CreateClinic")]
         public void CreateClinic(Clinic clinic)
         {

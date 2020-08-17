@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Peohe.Models;
 using System;
-using static Peohe.Models.Enum.Attendance;
+using static Peohe.Models.Enums.Attendance;
 
 namespace Peohe.Db.Configuration
 {
@@ -10,6 +10,7 @@ namespace Peohe.Db.Configuration
     {
         public void Configure(EntityTypeBuilder<Attendance> builder)
         {
+
             //Table
             builder.ToTable("Attendance");
 
@@ -30,7 +31,7 @@ namespace Peohe.Db.Configuration
             builder.Property(attendance => attendance.CardFee);
             builder.Property(attendance => attendance.InstallmentsAmount);
             builder.Property(attendance => attendance.InstallmentsPaid);
-            builder.Property(attendance => attendance.CreatedDate).HasDefaultValue(DateTime.Now);
+            builder.Property(attendance => attendance.CreatedDate);
             builder.Property(attendance => attendance.StartDate);
             builder.Property(attendance => attendance.EndDate);
             builder.Property(attendance => attendance.PayDay);
@@ -42,6 +43,7 @@ namespace Peohe.Db.Configuration
                 .HasConversion(s => s.ToString(), s => (Status)Enum.Parse(typeof(Status), s));
             builder.Property(attendance => attendance.TypeOfPayment)
                 .HasConversion(tp => tp.ToString(), tp => (TypeOfPayment)Enum.Parse(typeof(TypeOfPayment), tp));
+
         }
     }
 }

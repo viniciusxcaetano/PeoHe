@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Peohe.Db;
 using Peohe.Models;
@@ -6,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using static Peohe.Models.Enum.Attendance;
+using static Peohe.Models.Enums.Attendance;
 
 namespace Peohe.Services
 {
@@ -28,7 +29,7 @@ namespace Peohe.Services
                 if (attendance.TypeOfPayment == TypeOfPayment.Credito)
                 {
                     List<Installment> installments = new List<Installment>();
-                     //double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
+                    //double amount = attendance.Amount / attendance.InstallmentsAmount.Value;
                     DateTime dueDate = DateTime.Now;
 
                     for (int i = 0; i < attendance.InstallmentsAmount; i++)
@@ -46,6 +47,9 @@ namespace Peohe.Services
                     }
                     attendance.Installments = installments;
                 }
+
+                //dbContext.Entry(attendance).State = EntityState.Modified; // update or save only entity attendance
+                dbContext.Attach(attendance.Clinic); // tell ef the entity Clinic already exists
                 dbContext.Attendances.Add(attendance);
                 dbContext.SaveChanges();
             }

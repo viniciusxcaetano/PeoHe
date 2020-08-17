@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Peohe.Models.Enum.Attendance;
+using static Peohe.Models.Enums.Attendance;
 
 namespace Peohe.Models
 {

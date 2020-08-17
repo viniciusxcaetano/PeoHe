@@ -1,4 +1,4 @@
-﻿namespace Peohe.Models.Enum
+﻿namespace Peohe.Models.Enums
 {
     public class Attendance
     {

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using static Peohe.Models.Enum.Attendance;
+using static Peohe.Models.Enums.Attendance;
 
 namespace Peohe.Controllers
 {
@@ -35,6 +35,19 @@ namespace Peohe.Controllers
         {
             List<Attendance> attendances = dbContext.Attendances.Where(a => a.Deleted == null).ToList();
             return attendances;
+        }
+
+        [HttpPost("UpdateAttendance")]
+        public void UpdateClinic(Attendance attendance)
+        {
+            Attendance oldAttendance = dbContext.Attendances.Where(a => a.AttendanceId == attendance.AttendanceId).AsNoTracking().FirstOrDefault();
+
+            if (oldAttendance != null)
+            {
+                dbContext.Attendances.Update(attendance);
+            }
+
+            dbContext.SaveChanges();
         }
 
         [HttpPost("CreateAttendance")]
@@ -66,7 +79,7 @@ namespace Peohe.Controllers
             }
         }
 
-        [HttpGet("DeleteAttendances")]
+        [HttpPost("DeleteAttendances")]
         public void DeleteAttendances(List<Guid> ids)
         {
             List<Attendance> attendances = dbContext.Attendances.Where(a => ids.Contains(a.AttendanceId)).ToList();
